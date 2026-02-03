@@ -1,0 +1,119 @@
+{
+  "name": "ServiceProvider",
+  "type": "object",
+  "properties": {
+    "owner_email": {
+      "type": "string",
+      "description": "Email of the provider owner"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "wedding_hall",
+        "service"
+      ],
+      "description": "Main category: wedding_hall or service"
+    },
+    "service_type": {
+      "type": "string",
+      "description": "Custom service type (e.g., Hair Salon, Nail Salon, Photographer, DJ) - only for services"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly unique identifier"
+    },
+    "name_sq": {
+      "type": "string",
+      "description": "Name in Albanian"
+    },
+    "name_en": {
+      "type": "string",
+      "description": "Name in English"
+    },
+    "name_mk": {
+      "type": "string",
+      "description": "Name in Macedonian"
+    },
+    "description_sq": {
+      "type": "string",
+      "description": "Description in Albanian"
+    },
+    "description_en": {
+      "type": "string",
+      "description": "Description in English"
+    },
+    "description_mk": {
+      "type": "string",
+      "description": "Description in Macedonian"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "number",
+      "description": "Maximum capacity (for wedding halls)"
+    },
+    "price_per_event": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "enum": [
+        "EUR",
+        "MKD",
+        "ALL"
+      ],
+      "default": "EUR"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image URLs"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Main cover image URL"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of amenities/features"
+    },
+    "working_hours": {
+      "type": "string",
+      "description": "Working hours description"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether provider is active"
+    },
+    "is_approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether provider is approved by admin"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "rejection_reason": {
+ 

@@ -1,0 +1,119 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "service_provider_id": {
+      "type": "string",
+      "description": "ID of the service provider"
+    },
+    "provider_slug": {
+      "type": "string",
+      "description": "Slug of the provider for easy reference"
+    },
+    "provider_owner_email": {
+      "type": "string",
+      "description": "Email of the provider owner for permissions"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Name of the client"
+    },
+    "client_phone": {
+      "type": "string",
+      "description": "Phone number of the client"
+    },
+    "client_email": {
+      "type": "string",
+      "description": "Email of the client (optional)"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the event"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "wedding",
+        "birthday",
+        "corporate",
+        "anniversary",
+        "engagement",
+        "graduation",
+        "other"
+      ],
+      "description": "Type of event"
+    },
+    "event_type_other": {
+      "type": "string",
+      "description": "Custom event type if 'other' selected"
+    },
+    "guests": {
+      "type": "number",
+      "description": "Number of guests expected"
+    },
+    "special_requests": {
+      "type": "string",
+      "description": "Special requests or notes"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "rejection_reason": {
+      "type": "string"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes visible only to admin/provider"
+    }
+  },
+  "required": [
+    "service_provider_id",
+    "client_name",
+    "client_phone",
+    "event_date",
+    "event_type"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.provider_owner_email": "{{user.email}}"
+        },
+        {
+          "created_by": "{{user.email}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.provider_owner_email": "{{user.email}}"
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

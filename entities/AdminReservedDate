@@ -1,0 +1,55 @@
+{
+  "name": "AdminReservedDate",
+  "type": "object",
+  "properties": {
+    "service_provider_id": {
+      "type": "string",
+      "description": "ID of the service provider"
+    },
+    "provider_slug": {
+      "type": "string",
+      "description": "Slug of the provider"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Reserved date"
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "cash_payment",
+        "subscription",
+        "maintenance",
+        "holiday",
+        "private_event",
+        "other"
+      ],
+      "description": "Reason for reservation"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Client name for cash payments"
+    },
+    "amount_paid": {
+      "type": "number",
+      "description": "Amount paid (for cash payments)"
+    }
+  },
+  "required": [
+    "service_provider_id",
+    "date",
+    "reason"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
